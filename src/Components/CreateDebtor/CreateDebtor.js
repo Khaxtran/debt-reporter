@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 
-import {NewDebtorForm} from '../NewDebtorForm/NewDebtorForm';
+import {CreateDebtorForm} from '../CreateDebtorForm/CreateDebtorForm';
 import {TileList} from '../TileList/TileList';
 
-const style = {
+ export const style = {
     section: {
         backgroundColor: 'white',
         color: 'black',
@@ -23,7 +23,7 @@ const style = {
     },
 }
 
-export const Debtor = ({debtors, addDebtor}) => {
+export const CreateDebtor = ({debtors, addDebtor}) => {
 
     const [name, setName] = useState('');
     const [duplicate, setDuplicate] = useState(false);
@@ -58,7 +58,7 @@ export const Debtor = ({debtors, addDebtor}) => {
         <div>
             <section style={style.section}>
                 <h2 style={style.heading}>Add Debtor {duplicate ? " - Name Already Exists" : ""}</h2>
-                <NewDebtorForm 
+                <CreateDebtorForm 
                     name={name}
                     setName={setName}
                     handleSubmit={handleSubmit}/>

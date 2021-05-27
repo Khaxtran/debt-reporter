@@ -6,7 +6,7 @@ import { Tile } from "../Tile/Tile";
 const style ={
     listContainer: {
         overFlow: 'scroll',
-        height: '200px'
+        height: '300px'
     }
 }
 

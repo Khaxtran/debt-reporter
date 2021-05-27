@@ -31,7 +31,7 @@ const style = {
 
 }
 
-export const NewDebtorForm = ({name, setName, handleSubmit}) => {
+export const CreateDebtorForm = ({name, setName, handleSubmit}) => {
 
     return(
         <form onSubmit={handleSubmit} style={style.form}>
