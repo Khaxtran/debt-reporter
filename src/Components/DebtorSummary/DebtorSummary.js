@@ -5,8 +5,12 @@ import {style} from '../CreateDebtor/CreateDebtor';
 export const DebtorSummary = () => {
     return(
         <div>
+            <div style={style.heading}>
+                <h2>Summary</h2>
+            </div>
+            
             <section style={style.section}>
-                <h2 style={style.heading}>Summary</h2>
+                
             </section>
         </div>
     )
