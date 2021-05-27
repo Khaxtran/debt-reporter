@@ -56,6 +56,7 @@ export const SummaryForm = () => {
                             style={style.input}
                             type='number'
                             name='amount'
+                            step=".01"
                             required
                             placeholder="Please enter amount"/>
                     </label>
