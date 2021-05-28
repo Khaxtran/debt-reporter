@@ -1,7 +1,16 @@
-import React, { useState, useRef } from "react";
-import useCollapse, { Collapsible } from 'react-hook-collapse';
+import React from "react";
 
-import {SummaryForm} from '../SummaryForm/SummaryForm';
+export const Tile = ({ tile }) => {
+  return (
+    <div className="tile-container">
+      {Object.values(tile).map((value, index) => (
+        <p key={index} style={style.tile}> {value} </p>
+      ))}
+    </div>
+  );
+};
+
+
 
 const style = {
     tile: {
@@ -17,26 +26,3 @@ const style = {
         marginTop: '10px',
     },
 }
-
-export const Tile = ({ tile }) => {
-  const ref = useRef();
-  const [state, setState] = useState(false);
-  useCollapse(ref, state);
-  
-  return (
-    <div>
-      {Object.values(tile).map((value, index) => (
-        <div 
-          key={index} 
-          style={style.tile} 
-          onClick={() => { setState(!state);}}
-          > {value} 
-          <div>=</div>
-        </div>
-      ))}
-      <div ref={ref} style={{ overflow: 'hidden', transition: '0.1s' }}>
-        <SummaryForm />
-      </div>
-    </div>
-  );
-};
