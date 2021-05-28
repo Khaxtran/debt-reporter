@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import useCollapse, { Collapsible } from 'react-hook-collapse';
+import { DebtorSummary } from "../DebtorSummary/DebtorSummary";
 
-import {SummaryForm} from '../SummaryForm/SummaryForm';
+import {DebtRecorder} from '../DebtRecorder/DebtRecorder';
 
 const style = {
     tile: {
@@ -22,6 +23,19 @@ export const Tile = ({ tile }) => {
   const ref = useRef();
   const [state, setState] = useState(false);
   useCollapse(ref, state);
+
+  const [summaries, setSummaries] = useState([]);
+
+  const addSummary = (amount, description, date) => {
+    setSummaries([
+      ...summaries,
+      {
+        amount: amount,
+        description: description,
+        date: date
+      }
+    ])
+  }
   
   return (
     <div>
@@ -35,8 +49,10 @@ export const Tile = ({ tile }) => {
         </div>
       ))}
       <div ref={ref} style={{ overflow: 'hidden', transition: '0.1s' }}>
-        <SummaryForm />
+        <DebtRecorder summaries={summaries}
+                      addSummary={addSummary}/>
       </div>
+      <DebtorSummary tiles={summaries}/>
     </div>
   );
 };

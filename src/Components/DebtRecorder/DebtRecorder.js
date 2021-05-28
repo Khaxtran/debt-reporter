@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const style = {
     form: {
@@ -15,24 +15,25 @@ const style = {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        fontSize: '20px',
+        fontSize: '15px',
         backgroundColor: '#F6f6f7',
         padding: '20px',
         width: '90%',
         borderRadius: '2px',
         marginBottom: '15px',
-        fontSize: '15px'
     },
 
     p: {
         margin: '0',
         paddingBottom: '5px',
+        paddingLeft: '4px'
     },
 
     input: {
         height: '30px',
         width: '180px',
-        paddingLeft: '10px'
+        paddingLeft: '10px',
+        border: 'none'
     },
 
     submit: {
@@ -44,10 +45,21 @@ const style = {
 
 }
 
-export const SummaryForm = () => {
+export const DebtRecorder = ({summaries, addSummary}) => {
+    const [amount, setAmount] = useState(0.00);
+    const [description, setDescription] = useState('');
+    const [date, setDate] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addSummary(amount, description, date);
+        setAmount(0.00);
+        setDescription('');
+        setDate('');
+    }
     
     return(
-        <form style={style.form}>
+        <form style={style.form} onSubmit={handleSubmit}>
             <div style={style.formDiv}>
                 <div>
                     <p style={style.p}>Amount</p>
@@ -56,9 +68,11 @@ export const SummaryForm = () => {
                             style={style.input}
                             type='number'
                             name='amount'
+                            value={amount}
+                            onChange={(e) => setAmount(e.target.value)}
                             step=".01"
                             required
-                            placeholder="Please enter amount"/>
+                            placeholder="How much they own you?"/>
                     </label>
                 </div>
                 
@@ -70,7 +84,9 @@ export const SummaryForm = () => {
                             style={style.input}
                             type='text'
                             name='description'
-                            placeholder='Add description'
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder='Food? or maybe Drinks?'
                             required/>
                     </label>
                 </div>
@@ -82,8 +98,11 @@ export const SummaryForm = () => {
                     <label>
                         <input 
                             style={style.input}
-                            type="date"
                             name="date"
+                            type="date"
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                            placeholder='When?'
                             required/>
                     </label>
                 </div>
